@@ -1,0 +1,1 @@
+g++ -std=c++17 -o main.exe main.cpp && cat input_test.txt | ./main.exe
