@@ -1,14 +1,18 @@
 import p5 from "p5"
 
+let p5i = undefined
+
 class GiftWrapping {
 
-  constructor(maxPoints = 50, pointsBuffer = 100){
+  constructor(P5, maxPoints = 50, pointsBuffer = 100){
 
     this.points = []
     this.hull = []
     this.maxPoints = maxPoints
     this.pointsBuffer = pointsBuffer
     this.nextIndex = -1
+
+    p5i = P5
 
     this.leftMost = undefined
     this.currentVertex = undefined
@@ -21,7 +25,7 @@ class GiftWrapping {
 
     // Create a random set of points
     for(let i = 0; i < this.maxPoints; i++ ) {
-      this.points.push(createVector(random(this.pointsBuffer, width-this.pointsBuffer), random(this.pointsBuffer, height-this.pointsBuffer)))
+      this.points.push(p5i.createVector(p5i.random(this.pointsBuffer, p5i.width-this.pointsBuffer), p5i.random(this.pointsBuffer, p5i.height-this.pointsBuffer)))
     }
 
     // Sort the points by their x coordinate
@@ -52,7 +56,7 @@ class GiftWrapping {
     if (this.index == this.points.length) {
       if (this.nextVertex == this.leftMost) {
         console.log('done')
-        noLoop()
+        p5i.noLoop()
       } else {
         this.hull.push(this.nextVertex)
         this.currentVertex = this.nextVertex
@@ -66,38 +70,38 @@ class GiftWrapping {
   draw(){
 
     // Draws the points
-    stroke(255)
-    strokeWeight(5)
+    p5i.stroke(255)
+    p5i.strokeWeight(5)
     for(const p of this.points)
-      point(p.x, p.y)
+      p5i.point(p.x, p.y)
 
     // Draws the polygon
-    stroke(0, 0, 255)
-    fill(0, 0, 255, 50)
-    beginShape()
+    p5i.stroke(0, 0, 255)
+    p5i.fill(0, 0, 255, 50)
+    p5i.beginShape()
     for (let p of this.hull) {
-      vertex(p.x, p.y)
+      p5i.vertex(p.x, p.y)
     }
-    endShape(CLOSE)
+    p5i.endShape(p5i.CLOSE)
 
     // Draws the leftmost point of the polygon
-    stroke(0, 255, 0)
-    strokeWeight(32)
-    point(this.leftMost.x, this.leftMost.y)
+    p5i.stroke(0, 255, 0)
+    p5i.strokeWeight(32)
+    p5i.point(this.leftMost.x, this.leftMost.y)
 
     // highlists the current verntex
-    stroke(200, 0, 255)
-    strokeWeight(32)
-    point(this.currentVertex.x, this.currentVertex.y)
+    p5i.stroke(200, 0, 255)
+    p5i.strokeWeight(32)
+    p5i.point(this.currentVertex.x, this.currentVertex.y)
 
     // Draws a line from the current vertex to the next vertex that was added to the hull
-    stroke(0, 255, 0)
-    strokeWeight(2)
-    line(this.currentVertex.x, this.currentVertex.y, this.nextVertex.x, this.nextVertex.y)
+    p5i.stroke(0, 255, 0)
+    p5i.strokeWeight(2)
+    p5i.line(this.currentVertex.x, this.currentVertex.y, this.nextVertex.x, this.nextVertex.y)
   
     // Draws a line to the next vertex that will be checked  
-    stroke(255)
-    line(this.currentVertex.x, this.currentVertex.y, this.checking.x, this.checking.y)
+    p5i.stroke(255)
+    p5i.line(this.currentVertex.x, this.currentVertex.y, this.checking.x, this.checking.y)
   }
 }
 
