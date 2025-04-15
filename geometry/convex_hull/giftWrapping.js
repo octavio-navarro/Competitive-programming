@@ -4,7 +4,7 @@ let p5i = undefined
 
 class GiftWrapping {
 
-  constructor(P5, maxPoints = 50, pointsBuffer = 100){
+  constructor(P5, maxPoints = 50, pointsBuffer = 100, seed = 42){
 
     this.points = []
     this.hull = []
@@ -19,10 +19,12 @@ class GiftWrapping {
     this.index= undefined
     this.nextVertex= undefined
     this.checking = undefined
+    this.seed = seed
   }
 
   setupPoints() {
 
+    p5i.randomSeed(this.seed)
     // Create a random set of points
     for(let i = 0; i < this.maxPoints; i++ ) {
       this.points.push(p5i.createVector(p5i.random(this.pointsBuffer, p5i.width-this.pointsBuffer), p5i.random(this.pointsBuffer, p5i.height-this.pointsBuffer)))

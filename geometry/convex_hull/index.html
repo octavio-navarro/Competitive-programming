@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Convex hull</title>
-    <link href="css/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <script type="module" defer src="convexHullExample.js"></script>
   </head>
   <body>
-    <div>
-      <h1>Gift Wrapping</h1>
-      <div id="giftWrappingContainer" >
-        <canvas id="giftWrappingCanvas" style="border: 1px solid black;" width=800 height=600></canvas>
+    <div id="gridContainer">
+      <div class="flexContainer">
+        <h1>Gift Wrapping</h1>
+        <div>
+          <p>In computational geometry, the gift wrapping algorithm is an algorithm for computing the convex hull of a given set of points.</p>
+          <p>In the two-dimensional case the algorithm is also known as Jarvis march, after R. A. Jarvis, who published it in 1973; it has <b>O(n h)</b> time complexity, where <b>n</b> is the number of points and <b>h</b> is the number of points on the convex hull. Its real-life performance compared with other convex hull algorithms is favorable when n is small or h is expected to be very small with respect to n.</p>
+          <a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm">Gift Wrapping Algorithm</a>
+          <br><br>
+        </div>
+        <div id="giftWrappingContainer" >
+          <canvas id="giftWrappingCanvas" style="border: 1px solid black;" width=800 height=600></canvas>
+        </div>
       </div>
-    </div>
 
-    <div>
-      <h1>Graham Scan</h1>
-      <div id="grahamScanContainer" >
-        <canvas id="grahamScanCanvas" style="border: 1px solid black;" width=800 height=600></canvas>
+      <div class="flexContainer">
+        <h1>Graham Scan</h1>
+        <div>
+          <p>Graham's scan is a method of finding the convex hull of a finite set of points in the plane with time complexity <b>O(n log n)</b>. It is named after Ronald Graham, who published the original algorithm in 1972.The algorithm finds all vertices of the convex hull ordered along its boundary. It uses a stack to detect and remove concavities in the boundary efficiently.</p> 
+        <a href="https://en.wikipedia.org/wiki/Graham_scan">Graham Scan algorithm</a>
+        <br><br>
+        </div>
+        <div id="grahamScanContainer" >
+          <canvas id="grahamScanCanvas" style="border: 1px solid black;" width=800 height=600></canvas>
+        </div>
       </div>
     </div>
   </body>

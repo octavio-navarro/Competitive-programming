@@ -8,13 +8,20 @@ import { GrahamScan } from './grahamScan'
 const giftWrappingCanvas = document.getElementById("giftWrappingCanvas")
 const grahamScanCanvas = document.getElementById("grahamScanCanvas")
 
+const points = []
+const maxPoints = 50
+const pointsBuffer = 100
+const seed = 42
+const frameRate = 10
+
 const giftWrappingP5 = new p5((p)=> {
 
-  const giftWrapping = new GiftWrapping(p, 50, 100)
+  const giftWrapping = new GiftWrapping(p, maxPoints, pointsBuffer, seed)
   
   p.setup = () => {
     p.createCanvas(800, 600, p.P2D, giftWrappingCanvas)
     giftWrapping.setupPoints()
+    p.frameRate(frameRate)
   }
 
   p.draw = () => {
@@ -27,11 +34,12 @@ const giftWrappingP5 = new p5((p)=> {
 
 const grahamScanP5 = new p5((p)=> {
 
-  const grahamScan = new GrahamScan(p, 50, 100)
+  const grahamScan = new GrahamScan(p, maxPoints, pointsBuffer, seed)
   
   p.setup = () => {
     p.createCanvas(800, 600, p.P2D, grahamScanCanvas)
     grahamScan.setupPoints()
+    p.frameRate(frameRate)
   }
 
   p.draw = () => {
