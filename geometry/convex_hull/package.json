@@ -11,7 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "p5": "^1.11.3",
+    "lil-gui": "^0.20.0",
+    "p5": "^1.11.3"
+  },
+  "devDependencies": {
     "vite": "^6.2.6"
   }
 }

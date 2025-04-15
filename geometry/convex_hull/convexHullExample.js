@@ -1,51 +1,88 @@
 // import p5 from 'p5/lib/p5'
 
 import p5 from 'p5'
+import GUI from 'lil-gui'
 import { GiftWrapping } from './giftWrapping'
 import { GrahamScan } from './grahamScan'
 
 // const sketch = window
-const giftWrappingCanvas = document.getElementById("giftWrappingCanvas")
-const grahamScanCanvas = document.getElementById("grahamScanCanvas")
 
-const points = []
-const maxPoints = 50
-const pointsBuffer = 100
-const seed = 42
-const frameRate = 10
+let giftWrappingP5 = undefined
+let grahamScanP5 = undefined
 
-const giftWrappingP5 = new p5((p)=> {
+const gui = new GUI()
+const config = {
+  maxPoints: 50,
+  pointsBuffer: 100,
+  seed: 42,
+  frameRate: 10,
+  restart: false,
+  reset: function(){ 
+    giftWrappingP5.remove()
+    grahamScanP5.remove()
 
-  const giftWrapping = new GiftWrapping(p, maxPoints, pointsBuffer, seed)
-  
-  p.setup = () => {
-    p.createCanvas(800, 600, p.P2D, giftWrappingCanvas)
-    giftWrapping.setupPoints()
-    p.frameRate(frameRate)
+    let gwCanvas = document.createElement("canvas")
+    gwCanvas.id = "giftWrappingCanvas"
+    document.getElementById("giftWrappingContainer").append(gwCanvas)
+    
+    let gsCanvas = document.createElement("canvas")
+    gsCanvas.id = "grahamScanCanvas" 
+    document.getElementById("grahamScanContainer").appendChild(gsCanvas)
+
+    main()
   }
+}
 
-  p.draw = () => {
-    p.background(0)
+gui.add(config, "maxPoints", 50, 100)
+gui.add(config, "pointsBuffer", 50, 200)
+gui.add(config, "seed", 0, 100)
+gui.add(config, "frameRate", 10, 60)
+gui.add(config, "reset")
 
-    giftWrapping.draw()
-    giftWrapping.step()
-  }
-})
+gui.close()
 
-const grahamScanP5 = new p5((p)=> {
+function main(){
 
-  const grahamScan = new GrahamScan(p, maxPoints, pointsBuffer, seed)
-  
-  p.setup = () => {
-    p.createCanvas(800, 600, p.P2D, grahamScanCanvas)
-    grahamScan.setupPoints()
-    p.frameRate(frameRate)
-  }
+  giftWrappingP5 = new p5((p)=> {
 
-  p.draw = () => {
-    p.background(0)
+    const giftWrapping = new GiftWrapping(p, config["maxPoints"], config["pointsBuffer"], config["seed"])
+    const giftWrappingCanvas = document.getElementById("giftWrappingCanvas")
 
-    grahamScan.draw()
-    grahamScan.step()
-  }
-})
+    p.setup = () => {
+      p.createCanvas(800, 600, p.P2D, giftWrappingCanvas)
+      giftWrapping.setupPoints()
+    }
+
+    p.draw = () => {
+      p.frameRate(config["frameRate"])
+      p.background(0)
+
+      giftWrapping.draw()
+      giftWrapping.step()
+    }
+  })
+
+  grahamScanP5 = new p5((p)=> {
+
+    const grahamScan = new GrahamScan(p, config["maxPoints"], config["pointsBuffer"], config["seed"])
+    const grahamScanCanvas = document.getElementById("grahamScanCanvas")
+
+    p.setup = () => {
+      p.createCanvas(800, 600, p.P2D, grahamScanCanvas)
+      grahamScan.setupPoints()
+    }
+
+    p.draw = () => {
+      p.frameRate(config["frameRate"])
+      p.background(0)
+
+      grahamScan.draw()
+      grahamScan.step()
+    }
+  })
+
+  console.log(grahamScanP5)
+
+}
+
+main()
