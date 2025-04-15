@@ -33,3 +33,4 @@
 
 .vscode
 pnpm-lock.yaml
+dist/
