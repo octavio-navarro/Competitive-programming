@@ -68,14 +68,14 @@ void template_test() {
   sVI_d(v);
   pVI(v);
 
-  vector<int>::iterator r = find(v.begin(), v.end(), 2);
+  vector<int>::iterator r = find(all(v), 2);
 
   if (r != v.end())
     cout << *r << endl;
   else
     cout << "Not found" << endl;
 
-  auto r2 = find_if(v.begin(), v.end(), [](int n) { return n % 2 == 0; });
+  auto r2 = find_if(all(v), [](int n) { return n % 2 == 0; });
 
   if (r2 != v.end())
     cout << *r2 << endl;
