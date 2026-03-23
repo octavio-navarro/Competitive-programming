@@ -12,6 +12,7 @@ Material for the competitive programming course.
 
 | Name | Time |
 |---|---|
-|David | 20:00 |
+|David | 17:00 |
 | Nicolas | 24:00 |
+| Santiago  H | 17:00 | 
 
