@@ -34,3 +34,4 @@
 .vscode
 pnpm-lock.yaml
 dist/
+test_problems/
